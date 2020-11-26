@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
 public class Car {
