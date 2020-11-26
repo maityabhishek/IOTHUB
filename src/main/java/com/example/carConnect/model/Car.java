@@ -3,16 +3,16 @@ package com.example.carConnect.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Car")
 @Entity
 public class Car {
 
-	
+	@Id
 	private String TripId;
 	private String UserId;
 	private String Name;
@@ -23,7 +23,7 @@ public class Car {
 	private int Sequence;
 	@Temporal(TemporalType.DATE)
 	private Date RecordedTimeStamp;
-	
+
 	private double EngineRPM;
 	private double ShortTermFuelBank;
 	private double LargeTermFuelBank;
@@ -31,7 +31,7 @@ public class Car {
 	private double RelativeThrottlePosition;
 	private int Runtime;
 	private double DistancewithMIL;
-	
+
 	private double EngineLoad;
 	private double MAFFlowRate;
 	private double OutsideTemperature;
@@ -40,7 +40,7 @@ public class Car {
 	public Car() {
 		super();
 	}
-	
+
 	public Car(String tripId, String userId, String name, String tripPointId, double lat, double lon, double speed,
 			int sequence, Date recordedTimeStamp, double engineRPM, double shortTermFuelBank, double largeTermFuelBank,
 			double throttlePosition, double relativeThrottlePosition, int runtime, double distancewithMIL,
@@ -222,5 +222,5 @@ public class Car {
 		EngineFuelRate = engineFuelRate;
 		this.vin = vin;
 	}
-	
+
 }
