@@ -12,12 +12,11 @@ import com.example.carConnectStart.model.Car;
 public class CarService {
 
 
-	private List<Car> car = new ArrayList<Car>(Arrays.asList(
+	List<Car> car = new ArrayList<Car>(Arrays.asList(
 			new Car("1", "1", "Rochit", "1", 100.50, 100.50, 80, 1, null, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "2"),
 			new Car("2", "2", "Rishabh", "1", 200.50, 200.50, 90, 1, null, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, "2")
 
 	));
-
 	/*
 	  public void addDummy(List<Car> ls){ repo.saveAll(ls); }
 	  
@@ -33,4 +32,5 @@ public class CarService {
 		 car.add(car1);
 	 }
 	
+	 
 }
