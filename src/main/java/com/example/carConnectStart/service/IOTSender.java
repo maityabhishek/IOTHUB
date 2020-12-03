@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microsoft.azure.sdk.iot.device.DeviceClient;
@@ -14,12 +15,17 @@ import com.microsoft.azure.sdk.iot.device.IotHubStatusCode;
 import com.microsoft.azure.sdk.iot.device.Message;
 import com.microsoft.azure.sdk.iot.device.transport.IotHubConnectionStatus;
 
+
 @Service
 public class IOTSender {
+	@Autowired
+	private IOTDeviceApi deviceapi;
+	
 	private static final int D2C_MESSAGE_TIMEOUT = 200000;   // 2 seconds
 	private static List failedMessageListOnClose = new ArrayList(); // List of messages that failed on close
 	public void sendMessageToIOTHUB(int numRequests ,DeviceClient client) {
-		 
+	
+	
 
 	// Set your token expiry time limit here
 			long time = 240000;
@@ -48,8 +54,8 @@ public class IOTSender {
 				temperature = 20 + Math.random() * 10;
 				humidity = 30 + Math.random() * 20;
 
-				String msgStr = "{\"deviceId\":\"" + deviceId + "\",\"messageId\":" + i + ",\"temperature\":" + temperature
-						+ ",\"humidity\":" + humidity + "}";
+				String msgStr = "{\"deviceId\":\"" + deviceId + "\",\"messageId\":" + i + ",\"Speed\":" + deviceapi.getData("0d")
+						+ ",\"Fuel\":" + deviceapi.getData("2f") + ",\"rpm\":" + deviceapi.getData("0c") + ",\"coolanttemp\":" + deviceapi.getData("05") +",\"engineload\":" + deviceapi.getData("04") +  "}";
 				try {
 					Message msg = new Message(msgStr);
 					msg.setContentTypeFinal("application/json");

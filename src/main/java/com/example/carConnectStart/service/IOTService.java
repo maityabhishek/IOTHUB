@@ -20,10 +20,10 @@ public class IOTService {
 
 		System.out.println("Starting...");
 		System.out.println("Beginning setup.");
-		int numRequests=200;
+		int numRequests=5;
 		String pathToCertificate = null;
 
-		String connString = "HostName=giciothub.azure-devices.net;DeviceId=giciotdevice;SharedAccessKey=rrRa6Zt/URvEUrZRt8ipoJbgtlCP70654ojM3lXFLsk=";
+		String connString = "HostName=maity-hub.azure-devices.net;DeviceId=maity-device;SharedAccessKey=Xo9RgKAxY5WtwMxr2qvNYLhhrdBQFGJVpmrgN7GDI2I=";
 
 		IotHubClientProtocol protocol= IotHubClientProtocol.HTTPS;
 
