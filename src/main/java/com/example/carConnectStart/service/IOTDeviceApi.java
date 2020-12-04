@@ -8,7 +8,7 @@ import org.json.*;
 
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class IOTDeviceApi {
 	
 	public String getData(String pid)

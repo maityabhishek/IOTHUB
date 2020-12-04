@@ -20,7 +20,7 @@ public class IOTService {
 
 		System.out.println("Starting...");
 		System.out.println("Beginning setup.");
-		int numRequests=5;
+		int numRequests=200;
 		String pathToCertificate = null;
 
 		String connString = "HostName=maity-hub.azure-devices.net;DeviceId=maity-device;SharedAccessKey=Xo9RgKAxY5WtwMxr2qvNYLhhrdBQFGJVpmrgN7GDI2I=";
