@@ -26,7 +26,7 @@ public class IOTService {
 		int numRequests=200;
 		String pathToCertificate = null;
 
-		String connString = "HostName=giciothub.azure-devices.net;DeviceId=giciotdevice;SharedAccessKey=SOaCbgQqpuheExFC6efzueLOojywcjOmuZAn8EPGhu4=";
+		String connString = "HostName=maity-hub.azure-devices.net;DeviceId=maity-device;SharedAccessKey=Xo9RgKAxY5WtwMxr2qvNYLhhrdBQFGJVpmrgN7GDI2I=";
 
 		IotHubClientProtocol protocol= IotHubClientProtocol.HTTPS;
 

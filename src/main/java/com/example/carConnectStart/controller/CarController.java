@@ -55,7 +55,7 @@ public class CarController {
 	}
 	
 	
-	@RequestMapping(path="/senddata/Trip",method=RequestMethod.GET)
+	@RequestMapping(path="/senddata/trip",method=RequestMethod.GET)
 	public ResponseEntity<?> sendTripData()
 	{
 		try {
@@ -81,7 +81,7 @@ public class CarController {
 		}
 		return new ResponseEntity<>("Data Sent to IOT HUB",HttpStatus.OK);
 	}
-	@RequestMapping(path="/senddata/vcondition",method=RequestMethod.GET)
+	@RequestMapping(path="/senddata/econdition",method=RequestMethod.GET)
 	public ResponseEntity<?> sendEmissionData()
 	{
 		try {
