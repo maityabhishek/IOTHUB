@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.carConnectStart.utll.CarDataGenerator;
 import com.microsoft.azure.sdk.iot.device.DeviceClient;
 import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeCallback;
 import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeReason;
@@ -23,7 +24,7 @@ public class IOTSender {
 	
 	private static final int D2C_MESSAGE_TIMEOUT = 200000;   // 2 seconds
 	private static List failedMessageListOnClose = new ArrayList(); // List of messages that failed on close
-	public void sendMessageToIOTHUB(int numRequests ,DeviceClient client) {
+	public void sendMessageToIOTHUB(int numRequests ,DeviceClient client,CarDataGenerator datagenerator) {
 	
 	
 
@@ -51,18 +52,17 @@ public class IOTSender {
 			double humidity = 0.0;
 
 			for (int i = 0; i < numRequests; ++i) {
-				temperature = 20 + Math.random() * 10;
-				humidity = 30 + Math.random() * 20;
 
-				String msgStr = "{\"deviceId\":\"" + deviceId + "\",\"messageId\":" + i + ",\"speed\":" + ((int)(100*Math.random()%150))
-						+ ",\"fuel\":" + ((int)((100*Math.random())%60)) + ",\"rpm\":" + ((int)(1000*Math.random()%1500)) + ",\"coolanttemp\":" + ((int)(200*Math.random()%150)) +",\"engineload\":" + ((int)(100*Math.random()%100)) +  "}";
+			//	String msgStr = "{\"deviceId\":\"" + deviceId + "\",\"messageId\":" + i + ",\"speed\":" + ((int)(100*Math.random()%150))
+			//			+ ",\"fuel\":" + ((int)((100*Math.random())%60)) + ",\"rpm\":" + ((int)(1000*Math.random()%1500)) + ",\"coolanttemp\":" + ((int)(200*Math.random()%150)) +",\"engineload\":" + ((int)(100*Math.random()%100)) +  "}";
 				try {
-					Message msg = new Message(msgStr);
+					Message msg = datagenerator.generateData();
 					msg.setContentTypeFinal("application/json");
-					msg.setProperty("temperatureAlert", temperature > 28 ? "true" : "false");
+					msg.setProperty("deviceid", deviceId);
+					msg.setProperty("messageid", ""+i);
 					msg.setMessageId(java.util.UUID.randomUUID().toString());
 					msg.setExpiryTime(D2C_MESSAGE_TIMEOUT);
-					System.out.println(msgStr);
+					
 
 					EventCallback eventCallback = new EventCallback();
 					client.sendEventAsync(msg, eventCallback, msg);

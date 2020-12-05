@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.carConnectStart.utll.VehicleConditionData;
+import com.example.carConnectStart.utll.VehicleEmissionData;
+import com.example.carConnectStart.utll.VehicleTripData;
 import com.microsoft.azure.sdk.iot.device.DeviceClient;
 import com.microsoft.azure.sdk.iot.device.IotHubClientProtocol;
 
@@ -16,7 +19,7 @@ public class IOTService {
 	
 	@Autowired
 	IOTReceiver iotReceiver;
-	public void connect() {
+	public void connect(int datamodelno) {
 
 		System.out.println("Starting...");
 		System.out.println("Beginning setup.");
@@ -50,7 +53,20 @@ public class IOTService {
 		 */
 
 		System.out.println("Successfully created an IoT Hub client.");
-		iotSender.sendMessageToIOTHUB(numRequests, client);
+		
+		switch(datamodelno)
+		{
+		case 1:
+			iotSender.sendMessageToIOTHUB(numRequests, client,new VehicleTripData());
+			break;
+		case 2:
+			iotSender.sendMessageToIOTHUB(numRequests, client,new VehicleEmissionData());
+			break;
+		case 3:
+			iotSender.sendMessageToIOTHUB(numRequests, client,new VehicleConditionData());
+			break;
+		}
+		
 		
 		/*
 		 * Scanner scanner = new Scanner(System.in); scanner.nextLine();
