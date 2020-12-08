@@ -8,7 +8,7 @@ public class VehicleTripData implements CarDataGenerator {
 
 	@Override
 	public Message generateData() {
-		String msgStr = "{\"speed\":"+ ((int)(1000*Math.random()%180)) +",\"fuel\":"+ ((int)(100*Math.random()%60))+",\"rpm\":"+ ((int)(10000*Math.random()%2500))+"}";
+		String msgStr = "{\"speed\":"+ ((int)(1000*Math.random()%180))+",\"tripid\":"+ ((int)(100*Math.random())) +",\"longitude\":"+ ((int)(100*Math.random()))+",\"latitude\":"+ ((int)(100*Math.random()))+",\"vin\":"+ ((int)(10000*Math.random()))+",\"fuel\":"+ ((int)(100*Math.random()%60))+",\"rpm\":"+ ((int)(10000*Math.random()%2500))+"}";
 		Message msg = new Message(msgStr);
 		System.out.println(msgStr);
 		return msg;
