@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.carConnectStart.model.Car;
+import com.example.carConnectStart.model.ObdData;
 import com.example.carConnectStart.service.CarService;
 import com.example.carConnectStart.service.IOTService;
 
@@ -94,6 +95,20 @@ public class CarController {
 		}
 		return new ResponseEntity<>("Data Sent to IOT HUB",HttpStatus.OK);
 	}
+	@RequestMapping(path="/senddata/all",method=RequestMethod.GET)
+	public ResponseEntity<?> sendAllData()
+	{
+		try {
+			
+			iotService.connect(4);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>("Data Sending Failed",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>("Data Sent to IOT HUB",HttpStatus.OK);
+	}
+	
 	
 	
 	// Copyright (c) Microsoft. All rights reserved.

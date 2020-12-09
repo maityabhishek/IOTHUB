@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.carConnectStart.utll.VehicleAllData;
 import com.example.carConnectStart.utll.VehicleConditionData;
 import com.example.carConnectStart.utll.VehicleEmissionData;
 import com.example.carConnectStart.utll.VehicleTripData;
@@ -26,8 +27,8 @@ public class IOTService {
 		int numRequests=200;
 		String pathToCertificate = null;
 
-		String connString = "HostName=giciothub.azure-devices.net;DeviceId=giciotdevice;SharedAccessKey=SOaCbgQqpuheExFC6efzueLOojywcjOmuZAn8EPGhu4=";
-
+		//String connString = "HostName=giciothub.azure-devices.net;DeviceId=giciotdevice;SharedAccessKey=SOaCbgQqpuheExFC6efzueLOojywcjOmuZAn8EPGhu4=";
+		String connString ="HostName=iot-eventhub.azure-devices.net;DeviceId=dev1;SharedAccessKey=6o57ILHnYxDv1xYETcg2QrinmS52ppq4Y9n4kKoSAZI=";
 		IotHubClientProtocol protocol= IotHubClientProtocol.HTTPS;
 
 		String protocolStr = "https";
@@ -64,6 +65,9 @@ public class IOTService {
 			break;
 		case 3:
 			iotSender.sendMessageToIOTHUB(numRequests, client,new VehicleConditionData());
+			break;
+		case 4:
+			iotSender.sendMessageToIOTHUB(numRequests, client,new VehicleAllData());
 			break;
 		}
 		
